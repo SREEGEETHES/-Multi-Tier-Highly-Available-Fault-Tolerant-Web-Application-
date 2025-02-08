@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS 3-Tier Web App</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+        main {
+            margin-top: 20px;
+        }
+        form {
+            display: inline-block;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 15px;
+            border: none;
+            background: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background: #218838;
+        }
+        #responseMessage {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to AWS 3-Tier Web App</h1>
+    </header>
+    
+    <main>
+        <form id="dataForm">
+            <label for="name">Enter Name:</label>
+            <input type="text" id="name" required>
+            <button type="submit">Submit</button>
+        </form>
+        <p id="responseMessage"></p>
+    </main>
+    
+    <script>
+        document.getElementById("dataForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            
+            fetch("http://your-backend-api.com/api", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("responseMessage").innerText = "Response: " + data.message;
+            })
+            .catch(error => {
+                document.getElementById("responseMessage").innerText = "Error: Unable to connect to backend.";
+            });
+        });
+    </script>
+</body>
+</html>
