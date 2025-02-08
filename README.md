@@ -133,4 +133,4 @@ For any issues, feel free to open a GitHub **Issue** or reach out via email.
 
 🔗 **GitHub Repository**: [(https://github.com/SREEGEETHES)]
 
-📜 **License**: MIT
+📜 **License**: Free to use
